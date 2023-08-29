@@ -57,7 +57,6 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-
   const posts = getDocuments("posts", [
     "title",
     "publishedAt",
@@ -70,6 +69,8 @@ export const getStaticProps = async () => {
   return {
     props: { posts }
   }
+
+
 }
 
 
