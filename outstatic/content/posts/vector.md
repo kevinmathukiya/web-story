@@ -6,7 +6,7 @@ author:
   picture: '/images/3389_vector-AwOD.png'
 slug: 'vector'
 description: ''
-coverImage: '/images/view_2932_vector-I1OT.png'
+coverImage: '/images/pexels-the-lazy-artist-gallery-1569002-AwND.jpg'
 publishedAt: '2023-08-31T03:48:41.908Z'
 ---
 
