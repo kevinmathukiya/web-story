@@ -6,7 +6,7 @@ author:
   picture: '/images/favicon-A1Mj.ico'
 slug: 'hello'
 description: 'ollis, justo odio elementum est, dapibus convallis ipsum tellus quis mauris. Phasellus vel turpis ut odio porttitor molestie vitae vel enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In '
-coverImage: '/images/favicon-U1ND.ico'
+coverImage: '/images/pexels-monstera-6289100-U0OD.jpg'
 publishedAt: '2023-08-29T04:54:20.449Z'
 ---
 
