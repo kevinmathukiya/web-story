@@ -10,31 +10,3 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-.container {
-  padding: 30px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-
-}
-
-.card {
-  border: 1px solid;
-  max-width: 250px;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.card-img {
-  width: 100%;
-  border-bottom: 1px solid #282828;
-}
-
-.author {
-  color: #4c4c4c;
-  font-weight: 400;
-}
