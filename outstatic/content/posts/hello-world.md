@@ -6,7 +6,7 @@ author:
   picture: 'https://avatars.githubusercontent.com/u/143371204?v=4'
 slug: 'hello-world'
 description: 'hello-world and lorem ipsum'
-coverImage: '/images/favicon-g4ND.ico'
+coverImage: '/images/pexels-mikhail-nilov-6740748-EzNj.jpg'
 publishedAt: '2023-08-28T11:45:09.829Z'
 ---
 
@@ -15,6 +15,4 @@ publishedAt: '2023-08-28T11:45:09.829Z'
 ```javascript
 console.log("Hello")
 ```
-
-
 
