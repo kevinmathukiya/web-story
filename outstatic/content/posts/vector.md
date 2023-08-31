@@ -1,5 +1,5 @@
 ---
-title: 'vector '
+title: 'vectorHave you ever tried to resize an image and it got distorted or lost a bit of quality? Vector graphics are the answer, as they are composed of things '
 status: 'published'
 author:
   name: ''
