@@ -1,12 +1,12 @@
 ---
 title: 'kevin'
-status: 'draft'
+status: 'published'
 author:
   name: ''
   picture: 'https://avatars.githubusercontent.com/u/143371204?v=4'
 slug: 'kevin'
 description: ''
-coverImage: '/images/div.blog-hero-item-image-contain-A4Mj.png'
+coverImage: '/images/div.blog-hero-item-image-contain-A4ND.png'
 publishedAt: '2023-09-01T04:29:18.166Z'
 ---
 
