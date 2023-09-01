@@ -10,3 +10,59 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.imagecover {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+  transition: all 0.8s ease;
+  z-index: 1000;
+}
+
+.image-wrapper {
+  position: relative;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.image-wrapper::before,
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 6px solid #045b98;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.image-wrapper::before {
+  border-right: 6px solid #8fb5d0;
+}
+
+.image-wrapper::before {
+  left: 17px
+}
+
+.image-wrapper::after {
+  left: 9px;
+}
+
+.image-wrapper:hover::after {
+  width: 100%;
+  height: 87%;
+}
+
+.image-wrapper:hover::before {
+  width: 100%;
+  height: 80%;
+}
+.image-wrapper:hover .play {
+  display: flex;
+}
+.play{
+  background-color: black;
+  opacity: 50%;
+}
