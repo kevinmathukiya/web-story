@@ -6,7 +6,7 @@ author:
   picture: 'https://avatars.githubusercontent.com/u/143371204?v=4'
 slug: 'kevin'
 description: ''
-coverImage: ''
+coverImage: '/images/div.blog-hero-item-image-contain-A4Mj.png'
 publishedAt: '2023-09-01T04:29:18.166Z'
 ---
 
