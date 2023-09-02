@@ -9,6 +9,7 @@ export default function Home({ posts }) {
   const HandleToggle = (value) => {
     Settoggle(value)
   }
+
   return (
     <div>
       <div>
@@ -45,17 +46,26 @@ export default function Home({ posts }) {
 
       <div className={`grid  gap-8 m-[30px] cursor-pointer ${toggle ? 'grid-cols-5' : 'grid-cols-7'}`} >
         {posts.map((post) => (
-          <div className={`relative ${toggle ? "h-[450px]" : "h-[310px]"}`}>
+
+          <div className={`relative image-wrapper  ${toggle ? "h-[450px]" : "h-[310px]"}`}>
+            {console.log(posts[0])}
+
             <img
-              className='h-[100%] w-[100%] rounded-lg'
+              className='h-[100%] w-[100%] rounded-lg imagecover'
               src={post.coverImage}
               alt={post.title}
             />
-
-            <div className='absolute  bottom-[0%] text-xl	p-2 text-white	'>
+            <div className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
+              <svg width="15%" height="15%" preserveAspectRatio="none" viewBox="0 0 30 46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 23L0 45.5167L0 0.483339L30 23Z" fill="#FAF9F9"></path></svg>
+            </div>
+            <div className='absolute z-[1000] bottom-[0%] text-xl	p-2 text-white	'>
               {post.title}
             </div>
+            {/* {post.content} */}
+
           </div>
+
+
         ))}
       </div>
     </div>
@@ -65,6 +75,7 @@ export default function Home({ posts }) {
 export const getStaticProps = async () => {
   const posts = getDocuments("posts", [
     "title",
+    "content",
     "publishedAt",
     "slug",
     "coverImage",
