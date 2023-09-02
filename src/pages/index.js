@@ -55,7 +55,7 @@ export default function Home({ posts }) {
               src={post.coverImage}
               alt={post.title}
             />
-            <div className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
+<div className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
               <svg width="15%" height="15%" preserveAspectRatio="none" viewBox="0 0 30 46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 23L0 45.5167L0 0.483339L30 23Z" fill="#FAF9F9"></path></svg>
             </div>
             <div className='absolute z-[1000] bottom-[0%] text-xl	p-2 text-white	'>
@@ -66,6 +66,9 @@ export default function Home({ posts }) {
               {post.title}
             </div>
             {/* {post.content} */}
+
+          </div>
+
 
           </div>
 
