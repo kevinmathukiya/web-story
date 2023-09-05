@@ -4,35 +4,68 @@ import Logo from '../images/logo.jpg'
 import Image from 'next/image'
 import { useState } from 'react';
 import Stories from 'react-insta-stories';
-const markdown = require('markdown-it')();
 
 export default function Home({ posts }) {
-  const [toggle, Settoggle] = useState(true)
-  const [story, Setstory] = useState(true)
+  const [toggle, setToggle] = useState(true)
+  const [story, setStory] = useState(true)
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
-
-  const StoryImage =
-    [
-      '/images/pexels-mikhail-nilov-6740748-EzNj.jpg',
-      '/images/pexels-monstera-6289100-M0OD.jpg',
-      '/images/div.blog-hero-item-image-contain-k2OT.png'
-    ]
+  const [storyImage, setStoryImage] = useState()
 
   const HandleToggle = (value) => {
-    Settoggle(value)
+    setToggle(value)
   }
+  const HandelstoryClick = (event) => {
+    const found = storyimages.find((element) => element.index === event);
+    if (found.imageUrls.length > 0) {
+      setStoryImage(found.imageUrls);
+      setStory(false);
+    } else {
+      alert("no image found")
+    }
 
-  const HandelClick = () => {
-    Setstory(false);
   }
 
   const handleStoryNavigation = (direction) => {
-    if (direction === 'next' && currentStoryIndex < StoryImage.length - 1) {
+    if (direction === 'next' && currentStoryIndex < storyImage.length - 1) {
       setCurrentStoryIndex(currentStoryIndex + 1);
     } else if (direction === 'previous' && currentStoryIndex > 0) {
       setCurrentStoryIndex(currentStoryIndex - 1);
     }
   };
+
+  function extractImageUrlsFromObjects(objects) {
+    const imageArrays = [];
+
+    for (let i = 0; i < objects.length; i++) {
+      const object = objects[i];
+      if (object.hasOwnProperty('content')) {
+        const content = object.content;
+        const imageUrlRegex = /!\[.*?\]\((.*?)\)/g;
+        const imageUrls = [];
+
+        let match;
+        while ((match = imageUrlRegex.exec(content)) !== null) {
+          imageUrls.push(match[1]);
+        }
+        imageArrays.push({
+          index: i,
+          imageUrls: imageUrls
+        });
+      }
+    }
+
+    return imageArrays;
+  }
+
+  const data = posts.map((post, index) => {
+    return {
+      content: post.content,
+      index: index
+    };
+  });
+  const storyimages = extractImageUrlsFromObjects(data);
+  console.log(storyimages, "storyimages")
+
 
   return (
     <div>
@@ -71,18 +104,17 @@ export default function Home({ posts }) {
           </div>
 
           <div className={`grid  gap-8 m-[30px] cursor-pointer ${toggle ? 'grid-cols-5' : 'grid-cols-7'}`} >
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <div>
                 <div className={`relative image-wrapper  ${toggle ? "h-[450px]" : "h-[310px]"}`}>
-                  {console.log(posts[0])}
-
                   <img
+                    id={`nextButton${index}`}
                     className='h-[100%] w-[100%] rounded-lg imagecover'
                     src={post.coverImage}
                     alt={post.title}
                   />
 
-                  <div onClick={HandelClick} className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
+                  <div onClick={() => HandelstoryClick(index)} className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
                     <svg width="15%" height="15%" preserveAspectRatio="none" viewBox="0 0 30 46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 23L0 45.5167L0 0.483339L30 23Z" fill="#FAF9F9"></path></svg>
                   </div>
                   <div className='absolute z-[1000] bottom-[0%] text-xl	p-2 text-white	'>
@@ -99,20 +131,19 @@ export default function Home({ posts }) {
           <button onClick={() => handleStoryNavigation('previous')} class="storybutton rounded-full border h-[50px] w-[50px]  text-gray-900 dark:text-white mr-[20px] "><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
           </svg></button>
-            <Stories
-              storyContainerStyles={{ borderRadius: "20px" }}
-              stories={StoryImage}
-              width={432}
-              height={768}
-              currentIndex={currentStoryIndex}
-            />
-
+          <Stories
+            storyContainerStyles={{ borderRadius: "20px" }}
+            stories={storyImage}
+            width={432}
+            height={768}
+            currentIndex={currentStoryIndex}
+          />
           <button onClick={() => handleStoryNavigation('next')} class="storybutton rounded-full border h-[50px] w-[50px] text-gray-900 dark:text-white ml-[20px] "><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
           </svg></button>
         </div>
-
       }
+
     </div >
   )
 }
