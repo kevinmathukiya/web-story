@@ -73,3 +73,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+.postbackground{
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  filter: blur(80px);
+  height: 100vh;
+}
+.item-set{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  left: 50%;
+}
