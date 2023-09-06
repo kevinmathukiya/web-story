@@ -4,8 +4,8 @@ import Logo from '../images/logo.jpg'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import Stories from 'react-insta-stories';
-import { Postnext, Postpre, Storynext, Storypre, Toggleone, Toggletwo } from './svg';
-
+import { Postnext, Postpre, Storynext, Storypre, Toggletwo } from './svg';
+import Toggleone from './svg';
 
 export default function Home({ posts }) {
   const [toggle, setToggle] = useState(true)
