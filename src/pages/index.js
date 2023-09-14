@@ -3,8 +3,7 @@ import back from '../images/background.jpg'
 import Logo from '../images/logo.jpg'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import Stories from 'react-insta-stories';
-import { Postnext, Postpre, Storynext, Storypre, Toggletwo } from './svg';
+import { Toggletwo } from './svg';
 import Toggleone from './svg';
 
 export default function Home({ posts }) {
@@ -15,6 +14,7 @@ export default function Home({ posts }) {
   const [postchange, setPostchange] = useState(0)
 
   useEffect(() => {
+
     const storyData = storyimages.find((ele) => ele.index === postchange)
     if (storyData && storyData.imageUrls.length) {
       setStoryImage(storyData.imageUrls);
@@ -28,8 +28,11 @@ export default function Home({ posts }) {
     setToggle(value)
   }
 
+
+
   const HandelstoryClick = (event) => {
     setPostchange(event)
+
     const found = storyimages.find((element) => element.index === event);
     if (found.imageUrls.length > 0) {
       setStoryImage(found.imageUrls);
@@ -46,6 +49,9 @@ export default function Home({ posts }) {
 
   const Storyend = () => {
     !(currentStoryIndex >= storyImage.length - 1) && setCurrentStoryIndex(currentStoryIndex + 1)
+  }
+  function handleClose() {
+    window.location.href = 'https://example.com';
   }
 
   function extractImageUrlsFromObjects(objects) {
@@ -71,13 +77,14 @@ export default function Home({ posts }) {
     return imageArrays;
   }
 
-  const data = posts.map((post, index) => {
+  const data = posts?.length ? posts.map((post, index) => {
     return {
       content: post.content,
       index: index
     };
-  });
+  }) : [];
   const storyimages = extractImageUrlsFromObjects(data);
+
   return (
     <div>
       {story ?
@@ -124,7 +131,6 @@ export default function Home({ posts }) {
                     src={post.coverImage}
                     alt={post.title}
                   />
-
                   <div onClick={() => HandelstoryClick(index)} className='play absolute z-[1000] h-[100%] w-[100%] hidden flex items-center justify-center'>
                     <svg width="15%" height="15%" preserveAspectRatio="none" viewBox="0 0 30 46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 23L0 45.5167L0 0.483339L30 23Z" fill="#FAF9F9"></path></svg>
                   </div>
@@ -139,25 +145,27 @@ export default function Home({ posts }) {
         </>
         :
         <>
-          <div className=' postbackground ' style={{ background: `url('${storyImage[currentStoryIndex]}')` }}>
-          </div>
-          <div className='item-set flex justify-center h-[100vh] items-center'>
-            <button className='mr-[20px]' onClick={() => setPostchange(postchange - 1)}><Postpre /></button>
-            <button disabled={currentStoryIndex <= 0} onClick={() => setCurrentStoryIndex(currentStoryIndex - 1)} class={`storybutton rounded-full border h-[50px] w-[50px] ${currentStoryIndex <= 0 ? "" : "bg-white"}  text-gray-900 dark:text-white mr-[20px]`}><Storypre /></button>
 
-            <Stories
-              storyContainerStyles={{ borderRadius: "20px" }}
-              stories={storyImage}
-              width={432}
-              height={768}
-              defaultInterval={5000}
-              onStoryEnd={Storyend}
-              currentIndex={currentStoryIndex}
-            />
-            <button disabled={currentStoryIndex >= storyImage.length - 1} onClick={() => setCurrentStoryIndex(currentStoryIndex + 1)} class={`storybutton rounded-full border h-[50px] w-[50px] ${currentStoryIndex >= storyImage.length - 1 ? "" : "bg-white"} text-gray-900 dark:text-white ml-[20px]`}><Storynext /></button>
-            <button className='ml-[20px]' onClick={Nextpost}><Postnext /></button>
-          </div>
+          <amp-story standalone >
+            <button class="i-amphtml-story-close-control i-amphtml-story-ui-hide-button i-amphtml-story-button" aria-label="Close"></button>
+            {storyImage.map((imageUrl, index) => (
+              <amp-story-page id={`page-${index}`}>
+                <amp-story-grid-layer template="fill">
+                  <amp-img src={imageUrl}
+                    width="720" height="1280"
+                    animate-in={index % 2 === 0 ? 'zoom-in' : 'zoom-out'}
+                    scale-start={index % 2 === 0 ? '1' : '1.5'}
+                    scale-end={index % 2 === 0 ? '1.5' : '1'}
+                    animate-in-duration="8s"
+                    layout="responsive"
+                    alt={`Image ${index}`}>
+                  </amp-img>
+                </amp-story-grid-layer>
+              </amp-story-page>
+            ))}
+          </amp-story>
         </>
+
       }
     </div >
   )
@@ -176,6 +184,7 @@ export const getStaticProps = async () => {
   return {
     props: { posts }
   }
+
 }
 
 
